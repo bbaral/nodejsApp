@@ -50,7 +50,13 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-    Cart.getCart(cart => {
+    req.user.getCart()
+        .then(cart => {
+            console.log(cart);
+        }).catch(err => {
+            console.log(err);
+    })
+/*    Cart.getCart(cart => {
         Product.fetchAll(products => {
             const cartProducts = [];
             for (product of products) {
@@ -67,7 +73,7 @@ exports.getCart = (req, res, next) => {
                 products: cartProducts
             });
         });
-    });
+    });*/
 };
 
 exports.postCart = (req, res, next) => {
