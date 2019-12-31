@@ -1,5 +1,5 @@
 {
-  "name": "nodejsApp",
+  "name": "nodejsapp",
   "version": "1.0.0",
   "description": "Simple Shopping Cart using Nodejs and MySQL",
   "main": "app.js",
