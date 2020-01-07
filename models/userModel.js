@@ -4,29 +4,29 @@ const getDB = require('../util/database').getDB;
 const ObjectId = mongodb.ObjectId;
 
 class User {
-    constructor(username, email, _id) {
+    constructor(username, email) {
         this.name = username;
         this.email = email;
     }
 
     save() {
         const db = getDB();
-        return db.collection('users')
-            .insertOne(this)
-            .then(result => {
-                console.log(result);
+        return db.collection('users').insertOne(this);
+    }
+
+    static findById(userId) {
+        const db = getDB();
+        return db
+            .collection('users')
+            .findOne({ _id: new ObjectId(userId) })
+            .then(user => {
+                console.log(user);
+                return user;
             })
             .catch(err => {
                 console.log(err);
             });
-
-    }
-
-    static findUserById(userId) {
-        const db = getDB();
-        return db.collection('users').findOne({_id: new ObjectId(userId)});
     }
 }
-
 
 module.exports = User;
